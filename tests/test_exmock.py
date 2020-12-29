@@ -61,6 +61,17 @@ class TestsTargetClass:
         foo_mock.do_foo.assert_called_once()
         do_bar_mock.assert_called_once_with('foo result')
 
+    def test_4a(self, mocker):
+        """ プロパティの戻り値を設定する """
+        # Given
+        foo_mock = mocker.Mock(FooClass)
+
+        # When
+        type(foo_mock).foo = 'override property'
+
+        # Then
+        assert foo_mock.foo == 'override property'
+
     def test_5(self, mocker):
         """ 呼び出された時に例外を発生させる """
         # Given
